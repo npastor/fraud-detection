@@ -17,7 +17,11 @@ As its name suggests, this service is responsible for screening new transactions
  
 
 #### Testing
-Deployed application can be accessed here[Fraud-detection-service](http://localhost:8080/swagger-ui.html)
+Deployed application can be accessed here [Fraud-detection-service](http://localhost:8080/swagger-ui.html)
+For testing the API : 
+* Click on POST transactions API.
+* Click on Try it out.
+* Copy paste the transaction body from below cases and click on Execute.
 
 ##### Case 1:
 ```
@@ -132,6 +136,7 @@ Deployed application can be accessed here[Fraud-detection-service](http://localh
   }
 ]
 ```
+You can also test basic validations that were added on transaction object level.(ex - passing any field value as null)
 
 #### First level architecture design
 
