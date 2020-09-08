@@ -15,7 +15,9 @@ import com.transaction.fraud.detection.service.DailyTransactionDataCache;
 public class DailyTransactionDataCacheImpl implements DailyTransactionDataCache {
     public static Map<Long, Double> customerDailySpendLimitExhausted = new HashMap<>();
     public static Map<Long, Integer> customerDailyFrequencyLimitExhausted = new HashMap<>();
-
+    /** This is hardcoded for assignment sake, but in real application this would be updated by transaction service
+    * after every succesful transaction.
+    */
     static {
         customerDailySpendLimitExhausted.put(1L, 100.0);
         customerDailySpendLimitExhausted.put(2L, 200.0);
