@@ -2,7 +2,9 @@
 
 As its name suggests, this service is responsible for screening new transactions and checking for fraud, based on historical aggregated data. The application must expose a REST API. It should contain endpoint to:
   - Screen a transaction for fraud
-
+#### Prerequisites
+ - Docker
+ - mvn
 #### Build
  - Run `mvn clean install` in the `fraud-detection` directory where the pom.xml resides.
  - A jar will be created in the target folder `fraud-detection/target`.
@@ -15,6 +17,7 @@ As its name suggests, this service is responsible for screening new transactions
  
 
 #### Testing
+Deployed application can be accessed here[Fraud-detection-service](http://localhost:8080/swagger-ui.html)
 
 ##### Case 1:
 ```
