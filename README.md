@@ -142,6 +142,7 @@ You can also test basic validations that were added on transaction object level.
 
 ![First level architecture design](src/main/resources/static/first_level_design.png)
 
+* Data required for this application is pre filled usig data.sql kept in resources folder.
 * The provided solution assumes, that there will be a separate transaction service that would call fraud detection service to check for frauds and would only allow/persist the transaction based on the validation errors found in this service.
 * This service is not supposed to update/persist any data. It only checks for fraudulent attempts based on the history.
 * For a real system, this service would interact with other services to first get the aggregated data /other data required for verifying rules and then have a rules engine program to validate transactions against all these rules.
