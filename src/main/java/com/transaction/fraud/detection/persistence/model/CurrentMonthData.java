@@ -18,8 +18,10 @@ public class CurrentMonthData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // This represents the total amount spent by the customer for current month.
     private Double monthlyAmountSpent;
 
+    // This represents the transaction frequency for the customer in current month.
     private Integer monthlyFrequency;
 
 }

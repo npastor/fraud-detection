@@ -31,7 +31,9 @@ public class Customer {
 
     private String billingName;
 
+    // Configurable property set by customer to add a daily spend limit.
     private Double dailySpendLimit;
 
+    // Configurable property set by customer to add a daily transaction frequency limit.
     private Integer dailyAllowedFrequency;
 }

@@ -36,7 +36,7 @@ public class FraudDetectionServiceImpl implements FraudDetectionService {
         Customer customer = customerRepo.findById(transaction.getCustomerId()).orElse(null);
 
         if (customer == null) {
-            return validations;
+            return validations; // TODO throw bad request exception
         }
 
         // Check for billing name
@@ -50,12 +50,12 @@ public class FraudDetectionServiceImpl implements FraudDetectionService {
         MonthlyAggregatedData monthlyAggregatedData = customer.getMonthlyAggregatedData();
         CurrentMonthData currentMonthData = customer.getCurrentMonthData();
 
-        // Check if this transaction would take current month's total to above aggregated amount spent for this customer
+        // Check if this transaction would take current month's total to above aggregated amount spent by this customer monthly
         if (Double.compare(Double.sum(transaction.getAmount(), currentMonthData.getMonthlyAmountSpent()),
                            monthlyAggregatedData.getAvgMonthlySpentAmount()) > 0) {
             validations.add(ValidationErrorDto.builder()
                                               .field("amount")
-                                              .message("The amount specified in the transaction is more the average amount spent by this customer monthly.")
+                                              .message("This transaction will result in amount spent in current month by customer to exceed the average amount spent by this customer monthly.")
                                               .build());
         }
 
@@ -75,7 +75,7 @@ public class FraudDetectionServiceImpl implements FraudDetectionService {
                            customer.getDailySpendLimit()) > 0) {
             validations.add(ValidationErrorDto.builder()
                                               .field("amount")
-                                              .message("Daily transaction amount crossed.")
+                                              .message("Daily transaction amount spend limit crossed.")
                                               .build());
         }
         Integer freqLimitExhausted = dailyTransactionDataCache.getFreqLimitExhausted(customer.getCustomerId());
@@ -84,7 +84,7 @@ public class FraudDetectionServiceImpl implements FraudDetectionService {
         if ((freqLimitExhausted + 1) > customer.getDailyAllowedFrequency()) {
             validations.add(ValidationErrorDto.builder()
                                               .field("frequency")
-                                              .message("Daily transaction frequency crossed.")
+                                              .message("Daily transaction frequency limit crossed.")
                                               .build());
         }
 

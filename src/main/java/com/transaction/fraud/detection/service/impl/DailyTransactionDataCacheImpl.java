@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.transaction.fraud.detection.service.DailyTransactionDataCache;
 
+/**
+ * In a real system, this could be cache shared by all services. This cache would record all daily transactions made per customer. It will
+ * be invalidated in 24 hrs.
+ */
 @Service
 public class DailyTransactionDataCacheImpl implements DailyTransactionDataCache {
     public static Map<Long, Double> customerDailySpendLimitExhausted = new HashMap<>();
@@ -26,11 +30,11 @@ public class DailyTransactionDataCacheImpl implements DailyTransactionDataCache 
 
     @Override
     public Double getSpendLimitExhausted(Long key) {
-        return customerDailySpendLimitExhausted.containsKey(key) ? customerDailySpendLimitExhausted.get(key) : null;
+        return customerDailySpendLimitExhausted.get(key);
     }
 
     @Override
     public Integer getFreqLimitExhausted(Long key) {
-        return customerDailyFrequencyLimitExhausted.containsKey(key) ? customerDailyFrequencyLimitExhausted.get(key) : null;
+        return customerDailyFrequencyLimitExhausted.get(key);
     }
 }
